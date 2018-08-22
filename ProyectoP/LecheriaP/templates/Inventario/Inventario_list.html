@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Cantidad de Pacas</td>
+			<td>Cantidad de Carretillos</td>
+			<td>Cantidad de Palas</td>
+			<td>Cantidad de Desparasitantes</td>
+			<td>Cantidad de Ordenadoras</td>
+			<td>Cantidad de Estanones con Miel</td>
+			<td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if Inventario %}
+		{% for Inventario in Inventario %}
+		<tr>
+			<td>{{ Inventario.id }}</td>
+			<td>{{ Inventario.cantidad_de_pacas }}</td>
+			<td>{{ Inventario.cantidad_de_carretillos }}</td>
+			<td>{{ Inventario.cantidad_de_palas }}</td>		
+			<td>{{ Inventario.cantidad_de_desparasitantes }}</td>
+			<td>{{ Inventario.cantidad_de_ordenadoras }}</td>
+			<td>{{ Inventario.cantidad_de_estanones_con_miel }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'Inventario:Inventario_editar' Inventario.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'Inventario:Inventario_eliminar' Inventario.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registro de inventario</h1>
+
+		{% endif %}		
+	</tbody>
+</table>
+
+{% endblock %}

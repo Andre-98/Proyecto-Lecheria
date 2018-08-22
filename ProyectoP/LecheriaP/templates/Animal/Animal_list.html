@@ -1,0 +1,52 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Identificacion Numerica</td>
+			<td>Nombre</td>
+			<td>Sexo</td>
+			<td>Fecha de Nacimiento</td>
+			<td>Edad</td>
+			<td>Raza</td>
+			<td>Foto</td>
+			<td>Etapa del Animal</td>
+			<td>Estado del Animal</td>
+			<td>Cantidad de Partos</td>
+			<td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if Animal %}
+		{% for Animal in Animal %}
+		<tr>
+			<td>{{ Animal.id }}</td>
+			<td>{{ Animal.identificacion_numerica }}</td>
+			<td>{{ Animal.nombre }}</td>		
+			<td>{{ Animal.sexo }}</td>
+			<td>{{ Animal.fecha_de_nacimiento }}</td>
+			<td>{{ Animal.edad }}</td>
+			<td>{{ Animal.raza }}</td>
+			<td>{{ Animal.foto }}</td>
+			<td>{{ Animal.etapa_del_animal }}</td>
+			<td>{{ Animal.estado_del_animal }}</td>
+			<td>{{ Animal.cantidad_de_partos }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'Animal:Animal_editar' Animal.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'Animal:Animal_eliminar' Animal.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registro de animales</h1>
+
+		{% endif %}		
+	</tbody>
+</table>
+
+{% endblock %}
