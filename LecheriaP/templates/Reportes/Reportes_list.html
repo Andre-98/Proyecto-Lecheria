@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Produccion Lactea Grupal por</td>
+			<td>Lista de Vacas Prenadas</td>
+			<td>Lista de Vacas en Produccion</td>
+			<td>Lista de Toros</td>
+			<td>Lista de Novillas</td>
+			<td>Lista de Novillos</td>
+			<td>Lista de Terneras</td>
+			<td>Lista de Terneros</td>
+			<td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if Reportes %}
+		{% for Reportes in Reportes %}
+		<tr>
+			<td>{{ Reportes.id }}</td>
+			<td>{{ Reportes.produccion_lactea_grupal_por }}</td>
+			<td>{{ Reportes.lista_de_vacas_prenadas }}</td>
+			<td>{{ Reportes.lista_de_vacas_en_produccion }}</td>		
+			<td>{{ Reportes.lista_de_toros }}</td>
+			<td>{{ Reportes.lista_de_novillas }}</td>
+			<td>{{ Reportes.lista_de_novillos }}</td>
+			<td>{{ Reportes.lista_de_terneras }}</td>
+			<td>{{ Reportes.lista_de_terneros }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'Reportes:Reportes_editar' Reportes.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'Reportes:Reportes_eliminar' Reportes.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registro de animales</h1>
+
+		{% endif %}		
+	</tbody>
+</table>
+
+{% endblock %}

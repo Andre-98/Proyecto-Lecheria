@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Produccion Diaria</td>
+			<td>Animales</td>
+			<td>Fecha de Produccion</td>
+			<td>Cantidad Producida</td>
+			<td>Unidad de Medida</td>
+			<td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if Produccion %}
+		{% for Produccion in Produccion %}
+		<tr>
+			<td>{{ Produccion.id }}</td>
+			<td>{{ Produccion.produccion_diaria }}</td>
+			<td>{{ Produccion.Animales.nombre }}</td>
+			<td>{{ Produccion.fecha_de_produccion }}</td>		
+			<td>{{ Produccion.cantidad_producida }}</td>
+			<td>{{ Produccion.unidad_de_medida }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'Produccion:Produccion_editar' Produccion.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'Produccion:Produccion_eliminar' Produccion.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registro de produccion</h1>
+
+		{% endif %}		
+	</tbody>
+</table>
+
+{% endblock %}
